@@ -5,8 +5,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import pl.sdacademy.demo.entity.Student;
 
+import java.util.List;
 
-public class CreateStudentDemo {
+
+public class QueryStudentDemo {
 
     public static void main(String[] args) {
         //tworzenie fabryki
@@ -17,21 +19,20 @@ public class CreateStudentDemo {
         Session session = factory.getCurrentSession();
 
         try {
-            //stwórz obiekt student i zapisz
-            System.out.println("Tworzę obiekt student");
-            Student student = new Student("Adam", "Testowy", "adam.testowy@sdacademy.pl");
 
             //rozpocznij transakcję żeby zapisać
             session.beginTransaction();
 
-            //zapisz studenta
-            System.out.println("Zapisywanie studenta");
-            session.save(student);
+            //pobierz listę studentów
+            List<Student> students = session.createQuery("from Student s").list();
+
+            for(Student s : students){
+                System.out.println(s);
+            }
 
             //zakomituj transakcję
             session.getTransaction().commit();
 
-            System.out.println("Zapisano studenta" + student.toString());
 
         } finally {
             //posprzątaj po otwartej sesji

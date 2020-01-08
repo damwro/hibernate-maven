@@ -5,8 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import pl.sdacademy.demo.entity.Student;
 
-
-public class CreateStudentDemo {
+public class ReadStudentDemo {
 
     public static void main(String[] args) {
         //tworzenie fabryki
@@ -19,23 +18,32 @@ public class CreateStudentDemo {
         try {
             //stwórz obiekt student i zapisz
             System.out.println("Tworzę obiekt student");
-            Student student = new Student("Adam", "Testowy", "adam.testowy@sdacademy.pl");
-
+            Student student = new Student("Karol", "Krawczyk", "karol.krawczyk@sdacademy.pl");
             //rozpocznij transakcję żeby zapisać
             session.beginTransaction();
-
             //zapisz studenta
             System.out.println("Zapisywanie studenta");
             session.save(student);
-
             //zakomituj transakcję
             session.getTransaction().commit();
+            System.out.println("Zapisano studenta: " + student.toString());
 
-            System.out.println("Zapisano studenta" + student.toString());
+            //Pobieranie studenta z bazy danych
+
+            System.out.println("Id studenta: " + student.getId());
+
+            Session currentSession = factory.getCurrentSession();
+            currentSession.beginTransaction();
+            currentSession.get(Student.class, student.getId());
+
+            System.out.println("Pobrałeś studenta: " + student.toString());
+
+
 
         } finally {
             //posprzątaj po otwartej sesji
             factory.close();
         }
     }
+
 }

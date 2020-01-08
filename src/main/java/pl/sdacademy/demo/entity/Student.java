@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "student")
 public class Student {
 
+    // id mówi że to identyfikator, niepusty i unikalny
+    // strategia generowania id IDENTITY  autoincrement, sequence z sekwencji
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
