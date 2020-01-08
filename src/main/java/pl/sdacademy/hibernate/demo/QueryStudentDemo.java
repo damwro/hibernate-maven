@@ -24,11 +24,19 @@ public class QueryStudentDemo {
             session.beginTransaction();
 
             //pobierz listę studentów
-            List<Student> students = session.createQuery("from Student s").list();
+            List<Student> students = session.createQuery("from Student s").getResultList();
 
             for(Student s : students){
                 System.out.println(s);
             }
+            List<Student> kowalscy = session.createQuery("from Student s where s.lastName = 'Kowalska'").getResultList();
+
+            for(Student s : kowalscy){
+                System.out.println(s);
+            }
+
+
+
 
             //zakomituj transakcję
             session.getTransaction().commit();

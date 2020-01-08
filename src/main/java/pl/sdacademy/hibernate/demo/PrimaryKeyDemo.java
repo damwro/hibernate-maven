@@ -18,8 +18,8 @@ public class PrimaryKeyDemo {
         try {
             //stwórz obiekt student i zapisz
             System.out.println("Tworzę 2 studentów");
-            Student student1 = new Student("Jan", "Brzechwa", "jan.brzechwa@sdacademy.pl");
-            Student student2 = new Student("Klaudia", "Kowalska", "anna.kowalska@sdacademy.pl");
+            Student student1 = new Student("Jerzy", "Żmudziński", "jan.brzechwa@sdacademy.pl");
+            Student student2 = new Student("Teresa", "Maj", "anna.kowalska@sdacademy.pl");
 
             //rozpocznij transakcję żeby zapisać
             session.beginTransaction();
