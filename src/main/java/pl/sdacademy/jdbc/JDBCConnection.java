@@ -1,4 +1,4 @@
-package pl.sda.jdbc;
+package pl.sdacademy.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
