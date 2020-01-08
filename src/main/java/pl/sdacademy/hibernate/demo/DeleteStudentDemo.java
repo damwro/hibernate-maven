@@ -5,7 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import pl.sdacademy.demo.entity.Student;
 
-public class PrimaryKeyDemo {
+
+public class DeleteStudentDemo {
 
     public static void main(String[] args) {
         //tworzenie fabryki
@@ -16,26 +17,23 @@ public class PrimaryKeyDemo {
         Session session = factory.getCurrentSession();
 
         try {
-            //stwórz obiekt student i zapisz
-            System.out.println("Tworzę 2 studentów");
-            Student student1 = new Student("Jerzy", "Krawiecki", "jan.brzechwa@sdacademy.pl");
-            Student student2 = new Student("Teresa", "Maj", "anna.kowalska@sdacademy.pl");
 
-            //rozpocznij transakcję żeby zapisać
             session.beginTransaction();
-
-            //zapisz studenta
-            System.out.println("Zapisywanie studentów");
-            session.save(student1);
-            session.save(student2);
-
+            int studentId = 1;
+            Student student = session.get(Student.class, studentId);
+            session.delete(student);
             //zakomituj transakcję
             session.getTransaction().commit();
+
+//            Session currentSession = factory.getCurrentSession();
+//            currentSession.beginTransaction();
+//            currentSession.createQuery("delete Student s where s.firstName ='Kasia' ").executeUpdate();
+//            currentSession.getTransaction().commit();
+
 
         } finally {
             //posprzątaj po otwartej sesji
             factory.close();
         }
     }
-
 }
