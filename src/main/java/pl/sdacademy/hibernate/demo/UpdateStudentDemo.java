@@ -27,7 +27,7 @@ public class UpdateStudentDemo {
 
             Session currentSession = factory.getCurrentSession();
             currentSession.beginTransaction();
-            currentSession.createQuery("update Student s set s.firstName = 'Kasia' where s.firstName ='Marta' ").executeUpdate();
+            currentSession.createQuery("update Student s set s.firstName = 'Kasia' where s.firstName ='Teresa' ").executeUpdate();
             currentSession.getTransaction().commit();
 
 
